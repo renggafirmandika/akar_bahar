@@ -1,6 +1,6 @@
-# flutter_exercise
+# Akar Bahar
 
-A new Flutter project.
+Aplikasi Komoditas Pertanian Berbahasa Lokal dan Bergambar.
 
 ## Getting Started
 
