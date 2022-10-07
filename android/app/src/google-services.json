@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "459207552710",
+    "project_id": "akar-bahar",
+    "storage_bucket": "akar-bahar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459207552710:android:e5f9c27f13524dba3071c7",
+        "android_client_info": {
+          "package_name": "com.example.akarbahar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459207552710-e83vgppbftjdpaf3l7lgsoqsfpc9ai7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXLlMJI7c0RitvWQ-FfAx_kvgIDUnM4cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459207552710-e83vgppbftjdpaf3l7lgsoqsfpc9ai7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
