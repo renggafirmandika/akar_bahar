@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_exercise/tabs/download.dart';
 import 'package:flutter_exercise/tabs/first_tab.dart';
 import 'package:flutter_exercise/tabs/fourth_tab.dart';
+import 'package:flutter_exercise/tabs/glosarium.dart';
 import 'package:flutter_exercise/tabs/komoditi.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     FirstTab(),
     Komoditi(),
-    FourthTab(),
+    Glosarium(),
     Download(),
   ];
 

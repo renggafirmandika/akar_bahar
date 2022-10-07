@@ -5,6 +5,7 @@ import 'dart:io' as io;
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:flutter_exercise/models/komoditi_model.dart';
+import 'package:flutter_exercise/models/glosarium_model.dart';
 
 class DatabaseHelper {
   static Database? _db;
@@ -49,5 +50,23 @@ class DatabaseHelper {
           list[i]['nama_lokal']));
     }
     return komoditas;
+  }
+
+  Future<List<GlosariumModel>> getGlosarium() async {
+    var dbClient = await db;
+    List<Map> list = await dbClient!.rawQuery('SELECT * FROM glosarium ');
+    List<GlosariumModel> glosarium = [];
+    for (int i = 0; i < list.length; i++) {
+      glosarium.add(new GlosariumModel(
+        list[i]['id_glosarium'],
+        list[i]['rincian'],
+        list[i]['istilah'],
+        list[i]['kondef'],
+        list[i]['kategori'],
+        list[i]['blok'],
+        list[i]['caption'],
+      ));
+    }
+    return glosarium;
   }
 }
