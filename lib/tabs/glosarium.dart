@@ -70,10 +70,10 @@ class _GlosariumState extends State<Glosarium> {
   }
 
   ListView getGlosariumListView() {
-    TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
+    //TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
 
     return ListView.separated(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0.0),
       separatorBuilder: (context, index) {
         return Divider();
       },

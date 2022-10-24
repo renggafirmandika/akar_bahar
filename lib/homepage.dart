@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/daftarKode.dart';
 import 'package:flutter_exercise/tabs/download.dart';
 import 'package:flutter_exercise/tabs/first_tab.dart';
-import 'package:flutter_exercise/tabs/fourth_tab.dart';
 import 'package:flutter_exercise/tabs/glosarium.dart';
 import 'package:flutter_exercise/tabs/komoditi.dart';
+import 'package:flutter_exercise/tabs/wilayah.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,9 +19,11 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     FirstTab(),
-    Komoditi(),
     Glosarium(),
-    Download(),
+    Komoditi(),
+    DaftarKode(),
+    Wilayah(),
+    //Download(),
   ];
 
   @override
@@ -31,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Container(
         color: Colors.green.shade800,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 13),
           child: GNav(
             backgroundColor: Colors.green.shade800,
             color: Colors.white,
@@ -50,17 +53,25 @@ class _HomePageState extends State<HomePage> {
                 text: 'Beranda',
               ),
               GButton(
+                icon: Icons.menu_book_rounded,
+                text: 'Glosarium',
+              ),
+              GButton(
                 icon: Icons.density_small_rounded,
                 text: 'Komoditas',
               ),
               GButton(
-                icon: Icons.menu_book_rounded,
-                text: 'Fitur Lainnya',
+                icon: Icons.format_list_numbered,
+                text: 'Daftar Kode',
               ),
               GButton(
-                icon: Icons.download,
-                text: 'Download',
+                icon: Icons.map_sharp,
+                text: 'Kode Wilayah',
               ),
+              // GButton(
+              //   icon: Icons.download,
+              //   text: 'Download',
+              // ),
             ],
           ),
         ),

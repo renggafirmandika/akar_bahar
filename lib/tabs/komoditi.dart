@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/models/komoditi_model.dart';
+import 'package:flutter_exercise/tabs/download.dart';
 import 'package:flutter_exercise/tabs/komoditiDetail.dart';
 import 'package:flutter_exercise/utils/database_helper.dart';
 import 'dart:core';
@@ -79,6 +80,8 @@ class _KomoditiState extends State<Komoditi> {
       appBar: AppBar(
         title: Text('Daftar Komoditas'),
       ),
+      floatingActionButton: buildNavigateButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(
@@ -105,6 +108,18 @@ class _KomoditiState extends State<Komoditi> {
             ),
     );
   }
+
+  Widget buildNavigateButton() => FloatingActionButton.extended(
+        icon: Icon(Icons.download),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        label: Text('Unduh Aset'),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Download()),
+          );
+        },
+      );
 
   ListView getKomoditiListView() {
     TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
