@@ -17,10 +17,22 @@ class Wilayah extends StatefulWidget {
 
 class _WilayahState extends State<Wilayah> {
   int count = 10;
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    _runFilter(_controller.text);
+  }
 
   void initState() {
     super.initState();
     getData();
+    _controller.addListener(_printLatestValue);
   }
 
   void getData() async {
@@ -57,16 +69,44 @@ class _WilayahState extends State<Wilayah> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Daftar Wilayah Administrasi'),
+        flexibleSpace: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.green.shade800, Colors.green.shade600])),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/pattern.png',
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          ],
+        ),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              onChanged: (value) => _runFilter(value),
-              decoration: const InputDecoration(
-                  labelText: 'Cari Nama atau Kode Wilayah',
-                  suffixIcon: Icon(Icons.search)),
+              controller: _controller,
+              //onChanged: (value) => _runFilter(value),
+              decoration: InputDecoration(
+                hintText: 'Cari Nama atau Kode Wilayah',
+                suffixIcon: _controller.text.isNotEmpty
+                    ? IconButton(
+                        onPressed: _controller.clear,
+                        icon: Icon(Icons.clear),
+                        splashColor: Colors.transparent,
+                      )
+                    : null,
+                prefixIcon: Icon(Icons.search),
+              ),
             ),
           ),
           Flexible(child: getWilayahListView()),

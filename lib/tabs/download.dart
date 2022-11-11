@@ -31,6 +31,25 @@ class _DownloadState extends State<Download> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Download Aset'),
+        flexibleSpace: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.green.shade800, Colors.green.shade600])),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/pattern.png',
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          ],
+        ),
       ),
       body: FutureBuilder<List<FirebaseFile>>(
         future: futureFiles,

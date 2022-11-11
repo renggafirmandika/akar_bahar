@@ -24,6 +24,25 @@ class DaftarKode extends StatelessWidget {
       backgroundColor: Color(0xfff6f7f9),
       appBar: AppBar(
         title: Text('Daftar Kode'),
+        flexibleSpace: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.green.shade800, Colors.green.shade600])),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/pattern.png',
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          ],
+        ),
       ),
       body: Column(
         children: <Widget>[

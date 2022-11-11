@@ -16,10 +16,22 @@ class Jasa extends StatefulWidget {
 
 class _JasaState extends State<Jasa> {
   int count = 10;
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    _runFilter(_controller.text);
+  }
 
   void initState() {
     super.initState();
     getData();
+    _controller.addListener(_printLatestValue);
   }
 
   void getData() async {
@@ -58,6 +70,25 @@ class _JasaState extends State<Jasa> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Jasa'),
+        flexibleSpace: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.green.shade800, Colors.green.shade600])),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/pattern.png',
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          ],
+        ),
       ),
       body: Column(
         children: [
@@ -65,9 +96,19 @@ class _JasaState extends State<Jasa> {
             padding:
                 const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
             child: TextField(
-              onChanged: (value) => _runFilter(value),
-              decoration: const InputDecoration(
-                  labelText: 'Cari jasa', suffixIcon: Icon(Icons.search)),
+              controller: _controller,
+              //onChanged: (value) => _runFilter(value),
+              decoration: InputDecoration(
+                hintText: 'Cari Jasa',
+                suffixIcon: _controller.text.isNotEmpty
+                    ? IconButton(
+                        onPressed: _controller.clear,
+                        icon: Icon(Icons.clear),
+                        splashColor: Colors.transparent,
+                      )
+                    : null,
+                prefixIcon: Icon(Icons.search),
+              ),
             ),
           ),
           Flexible(child: getJasaListView()),

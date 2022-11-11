@@ -16,10 +16,22 @@ class SatuanProduksi extends StatefulWidget {
 
 class _SatuanProduksiState extends State<SatuanProduksi> {
   int count = 10;
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    _runFilter(_controller.text);
+  }
 
   void initState() {
     super.initState();
     getData();
+    _controller.addListener(_printLatestValue);
   }
 
   void getData() async {
@@ -56,6 +68,25 @@ class _SatuanProduksiState extends State<SatuanProduksi> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Kode Satuan Produksi'),
+        flexibleSpace: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.green.shade800, Colors.green.shade600])),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/pattern.png',
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          ],
+        ),
       ),
       body: Column(
         children: [

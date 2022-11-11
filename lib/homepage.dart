@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/daftarKode.dart';
 import 'package:flutter_exercise/tabs/download.dart';
-import 'package:flutter_exercise/tabs/first_tab.dart';
+import 'package:flutter_exercise/tabs/beranda.dart';
 import 'package:flutter_exercise/tabs/glosarium.dart';
 import 'package:flutter_exercise/tabs/komoditi.dart';
-import 'package:flutter_exercise/tabs/wilayah.dart';
+//import 'package:flutter_exercise/tabs/wilayah.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,16 +18,17 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    FirstTab(),
+    Beranda(),
     Glosarium(),
     Komoditi(),
     DaftarKode(),
-    Wilayah(),
-    //Download(),
+    //Wilayah(),
+    Download(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(AssetImage('logo_st2023.png'), context);
     return Scaffold(
       body: _pages[_selectedIndex],
       backgroundColor: Colors.white,
@@ -65,8 +66,8 @@ class _HomePageState extends State<HomePage> {
                 text: 'Daftar Kode',
               ),
               GButton(
-                icon: Icons.map_sharp,
-                text: 'Kode Wilayah',
+                icon: Icons.download,
+                text: 'Download',
               ),
               // GButton(
               //   icon: Icons.download,

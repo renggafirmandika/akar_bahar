@@ -170,22 +170,22 @@ class _KomoditiDetailState extends State<KomoditiDetail> {
 
     final bottomContentText2 = new ListTile(
       title: Text(widget.ket1a + ": "),
-      subtitle: Text(widget.ket1b),
+      subtitle: Text(widget.ket1b.trim()),
     );
 
     final bottomContentText3 = new ListTile(
       title: Text(widget.ket2a + ": "),
-      subtitle: Text(widget.ket2b),
+      subtitle: Text(widget.ket2b.trim()),
     );
 
     final bottomContentText4 = new ListTile(
       title: Text(widget.ket3a + ": "),
-      subtitle: Text(widget.ket3b),
+      subtitle: Text(widget.ket3b.trim()),
     );
 
     final bottomContentText5 = new ListTile(
       title: Text("Nama Lokal:"),
-      subtitle: Text(widget.nama_lokal),
+      subtitle: Text(widget.nama_lokal.trim()),
     );
 
     final bottomContent = Expanded(
@@ -200,9 +200,9 @@ class _KomoditiDetailState extends State<KomoditiDetail> {
             children: <Widget>[
               bottomContentText0,
               bottomContentText1,
-              bottomContentText2,
-              bottomContentText3,
-              bottomContentText4,
+              if (widget.ket1a != '') bottomContentText2,
+              if (widget.ket2a != '') bottomContentText3,
+              if (widget.ket3a != '') bottomContentText4,
               bottomContentText5
             ],
           ),
@@ -214,6 +214,25 @@ class _KomoditiDetailState extends State<KomoditiDetail> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Detail'),
+        flexibleSpace: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.green.shade800, Colors.green.shade600])),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/pattern.png',
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          ],
+        ),
       ),
       body: Column(
         children: <Widget>[

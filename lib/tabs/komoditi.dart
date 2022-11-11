@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/models/komoditi_model.dart';
-import 'package:flutter_exercise/tabs/download.dart';
+//import 'package:flutter_exercise/tabs/download.dart';
 import 'package:flutter_exercise/tabs/komoditiDetail.dart';
 import 'package:flutter_exercise/utils/database_helper.dart';
 import 'dart:core';
@@ -79,9 +79,28 @@ class _KomoditiState extends State<Komoditi> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Daftar Komoditas'),
+        flexibleSpace: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.green.shade800, Colors.green.shade600])),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/pattern.png',
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          ],
+        ),
       ),
-      floatingActionButton: buildNavigateButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      //floatingActionButton: buildNavigateButton(),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(
@@ -92,15 +111,16 @@ class _KomoditiState extends State<Komoditi> {
                     controller: _controller,
                     //onChanged: (value) => _runFilter(value),
                     decoration: InputDecoration(
-                        hintText: 'Search',
-                        suffixIcon: _controller.text.isNotEmpty
-                            ? IconButton(
-                                onPressed: _controller.clear,
-                                icon: Icon(Icons.clear),
-                                splashColor: Colors.transparent,
-                              )
-                            : null,
-                        prefixIcon: Icon(Icons.search)),
+                      hintText: 'Cari Komoditas',
+                      suffixIcon: _controller.text.isNotEmpty
+                          ? IconButton(
+                              onPressed: _controller.clear,
+                              icon: Icon(Icons.clear),
+                              splashColor: Colors.transparent,
+                            )
+                          : null,
+                      prefixIcon: Icon(Icons.search),
+                    ),
                   ),
                 ),
                 Flexible(child: getKomoditiListView()),
@@ -109,23 +129,23 @@ class _KomoditiState extends State<Komoditi> {
     );
   }
 
-  Widget buildNavigateButton() => FloatingActionButton.extended(
-        icon: Icon(Icons.download),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        label: Text('Unduh Aset'),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Download()),
-          );
-        },
-      );
+  // Widget buildNavigateButton() => FloatingActionButton.extended(
+  //       icon: Icon(Icons.download),
+  //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  //       label: Text('Unduh Aset'),
+  //       onPressed: () {
+  //         Navigator.push(
+  //           context,
+  //           MaterialPageRoute(builder: (context) => Download()),
+  //         );
+  //       },
+  //     );
 
   ListView getKomoditiListView() {
     TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
 
     return ListView.separated(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(5.0),
       separatorBuilder: (context, index) {
         return Divider();
       },
@@ -137,20 +157,40 @@ class _KomoditiState extends State<Komoditi> {
             komoditi_list_filtered[index].subjudulKomoditas,
             style: titleStyle,
           ),
-          subtitle: Text(komoditi_list_filtered[index].judulKomoditas +
-              ';\n' +
-              komoditi_list_filtered[index].ket1a +
-              ': ' +
-              komoditi_list_filtered[index].ket1b +
-              ';\n' +
-              komoditi_list_filtered[index].ket2a +
-              ': ' +
-              komoditi_list_filtered[index].ket2b +
-              ';\n' +
-              komoditi_list_filtered[index].ket3a +
-              ': ' +
-              komoditi_list_filtered[index].ket3b +
-              ';'),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(komoditi_list_filtered[index].judulKomoditas),
+              if (komoditi_list_filtered[index].ket1a != '')
+                Text(komoditi_list_filtered[index].ket1a +
+                    ': ' +
+                    komoditi_list_filtered[index].ket1b +
+                    ';'),
+              if (komoditi_list_filtered[index].ket2a != '')
+                Text(komoditi_list_filtered[index].ket2a +
+                    ': ' +
+                    komoditi_list_filtered[index].ket2b +
+                    ';'),
+              if (komoditi_list_filtered[index].ket3a != '')
+                Text(komoditi_list_filtered[index].ket3a +
+                    ': ' +
+                    komoditi_list_filtered[index].ket3b +
+                    ';'),
+
+              // komoditi_list_filtered[index].ket1a +
+              // ': ' +
+              // komoditi_list_filtered[index].ket1b +
+              // ';\n' +
+              // komoditi_list_filtered[index].ket2a +
+              // ': ' +
+              // komoditi_list_filtered[index].ket2b +
+              // ';\n' +
+              // komoditi_list_filtered[index].ket3a +
+              // ': ' +
+              // komoditi_list_filtered[index].ket3b +
+              // ';'),
+            ],
+          ),
           trailing: Icon(
             Icons.keyboard_arrow_right_rounded,
             color: Colors.grey,
