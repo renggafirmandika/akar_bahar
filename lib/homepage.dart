@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(AssetImage('logo_st2023.png'), context);
+    //precacheImage(AssetImage('logo_st2023.png'), context);
     return Scaffold(
       body: _pages[_selectedIndex],
       backgroundColor: Colors.white,

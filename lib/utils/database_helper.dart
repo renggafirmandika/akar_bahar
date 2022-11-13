@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_exercise/models/wilayah_prov.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io' as io;
@@ -77,6 +78,21 @@ class DatabaseHelper {
           list[i]['kode_level_atas'],
           list[i]['klasifikasi'],
           list[i]['display_kode']));
+    }
+    return wilayah;
+  }
+
+  Future<List<WilayahProvModel>> getWilayahProv() async {
+    var dbClient = await db;
+
+    List<Map> list = await dbClient!.rawQuery(
+        'SELECT * FROM kode_wilayah WHERE kode_level_atas="00" ORDER BY kode_wilayah asc');
+    List<WilayahProvModel> wilayah = [];
+    for (int i = 0; i < list.length; i++) {
+      wilayah.add(new WilayahProvModel(
+        list[i]['kdprov'],
+        list[i]['prov'].toString().toTitleCase(),
+      ));
     }
     return wilayah;
   }
@@ -210,4 +226,15 @@ class DatabaseHelper {
     }
     return wpp;
   }
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.capitalize())
+      .join(' ');
 }

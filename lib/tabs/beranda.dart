@@ -175,7 +175,7 @@ class Beranda extends StatelessWidget {
                         style: TextStyle(fontStyle: FontStyle.italic),
                       ),
                     ),
-                    InteractiveViewer(
+                    InstaImageViewer(
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),

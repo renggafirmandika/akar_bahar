@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/models/komoditi_model.dart';
+//import 'package:flutter_exercise/models/wilayah_model.dart';
+import 'package:flutter_exercise/models/wilayah_prov.dart';
 //import 'package:flutter_exercise/tabs/download.dart';
 import 'package:flutter_exercise/tabs/komoditiDetail.dart';
 import 'package:flutter_exercise/utils/database_helper.dart';
 import 'dart:core';
 
+import 'package:flutter_material_pickers/flutter_material_pickers.dart';
+
 List<KomoditiModel> komoditi_list = [];
 List<KomoditiModel> komoditi_list_filtered = [];
+List<WilayahProvModel> prov = [];
+WilayahProvModel selectedWilayah = WilayahProvModel("", "");
+String kode = "";
+String nama = "-";
 
 class Komoditi extends StatefulWidget {
   const Komoditi({super.key});
@@ -34,6 +42,7 @@ class _KomoditiState extends State<Komoditi> {
   void initState() {
     super.initState();
     getData();
+    getDataProv();
     _controller.addListener(_printLatestValue);
   }
 
@@ -44,6 +53,16 @@ class _KomoditiState extends State<Komoditi> {
       komoditi_list = _komoditi_list;
       komoditi_list_filtered = komoditi_list;
       _isLoading = false;
+    });
+  }
+
+  void getDataProv() async {
+    var dbHelper = DatabaseHelper();
+    List<WilayahProvModel> _prov = await dbHelper.getWilayahProv();
+    //WilayahProvModel _selectedWilayah = _prov[0];
+    setState(() {
+      prov = _prov;
+      //selectedWilayah = _selectedWilayah;
     });
   }
 
@@ -79,6 +98,27 @@ class _KomoditiState extends State<Komoditi> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Daftar Komoditas'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => showMaterialScrollPicker<WilayahProvModel>(
+                context: context,
+                title: 'Pilih Wilayah',
+                items: prov,
+                selectedItem: selectedWilayah,
+                onChanged: (value) => setState(() {
+                      selectedWilayah = value;
+                      kode = value.code;
+                      nama = value.name;
+                    })),
+            child: Text(
+              "wilayah: \n" + nama,
+              textAlign: TextAlign.right,
+            ),
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            ),
+          ),
+        ],
         flexibleSpace: Stack(
           children: [
             Container(
