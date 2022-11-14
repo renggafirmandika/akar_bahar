@@ -13,7 +13,7 @@ List<KomoditiModel> komoditi_list = [];
 List<KomoditiModel> komoditi_list_filtered = [];
 List<WilayahProvModel> prov = [];
 WilayahProvModel selectedWilayah = WilayahProvModel("", "");
-String kode = "";
+String kode = "00";
 String nama = "-";
 
 class Komoditi extends StatefulWidget {
@@ -48,7 +48,7 @@ class _KomoditiState extends State<Komoditi> {
 
   void getData() async {
     var dbHelper = DatabaseHelper();
-    List<KomoditiModel> _komoditi_list = await dbHelper.getKomoditas();
+    List<KomoditiModel> _komoditi_list = await dbHelper.getKomoditas(kode);
     setState(() {
       komoditi_list = _komoditi_list;
       komoditi_list_filtered = komoditi_list;
@@ -99,8 +99,8 @@ class _KomoditiState extends State<Komoditi> {
       appBar: AppBar(
         title: Text('Daftar Komoditas'),
         actions: <Widget>[
-          TextButton(
-            onPressed: () => showMaterialScrollPicker<WilayahProvModel>(
+          IconButton(
+            onPressed: () => showMaterialRadioPicker<WilayahProvModel>(
                 context: context,
                 title: 'Pilih Wilayah',
                 items: prov,
@@ -109,11 +109,9 @@ class _KomoditiState extends State<Komoditi> {
                       selectedWilayah = value;
                       kode = value.code;
                       nama = value.name;
+                      getData();
                     })),
-            child: Text(
-              "wilayah: \n" + nama,
-              textAlign: TextAlign.right,
-            ),
+            icon: Icon(Icons.more_vert),
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
             ),

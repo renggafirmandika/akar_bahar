@@ -34,27 +34,44 @@ class DatabaseHelper {
       await io.File(path).writeAsBytes(bytes, flush: true);
     }
 
-    var theDb = await openDatabase(path, version: 1);
+    var theDb = await openDatabase(path, version: 2);
     return theDb;
   }
 
-  Future<List<KomoditiModel>> getKomoditas() async {
+  Future<List<KomoditiModel>> getKomoditas(String kode) async {
     var dbClient = await db;
     List<Map> list = await dbClient!.rawQuery('SELECT * FROM Komoditas');
     List<KomoditiModel> komoditas = [];
-    for (int i = 0; i < list.length; i++) {
-      komoditas.add(new KomoditiModel(
-          list[i]['kode'],
-          list[i]['subjudul'],
-          list[i]['judul'],
-          list[i]['1a'] == null ? '' : list[i]['1a'],
-          list[i]['1b'] == null ? '' : list[i]['1b'],
-          list[i]['2a'] == null ? '' : list[i]['2a'],
-          list[i]['2b'] == null ? '' : list[i]['2b'],
-          list[i]['3a'] == null ? '' : list[i]['3a'],
-          list[i]['3b'] == null ? '' : list[i]['3b'],
-          list[i]['nama_lokal'] == null ? '' : list[i]['nama_lokal']));
+    if (kode == '00') {
+      for (int i = 0; i < list.length; i++) {
+        komoditas.add(new KomoditiModel(
+            list[i]['kode'],
+            list[i]['subjudul'],
+            list[i]['judul'],
+            list[i]['1a'] == null ? '' : list[i]['1a'],
+            list[i]['1b'] == null ? '' : list[i]['1b'],
+            list[i]['2a'] == null ? '' : list[i]['2a'],
+            list[i]['2b'] == null ? '' : list[i]['2b'],
+            list[i]['3a'] == null ? '' : list[i]['3a'],
+            list[i]['3b'] == null ? '' : list[i]['3b'],
+            list[i]['nama_lokal'] == null ? '' : list[i]['nama_lokal']));
+      }
+    } else {
+      for (int i = 0; i < list.length; i++) {
+        komoditas.add(new KomoditiModel(
+            list[i]['kode'],
+            list[i]['subjudul'],
+            list[i]['judul'],
+            list[i]['1a'] == null ? '' : list[i]['1a'],
+            list[i]['1b'] == null ? '' : list[i]['1b'],
+            list[i]['2a'] == null ? '' : list[i]['2a'],
+            list[i]['2b'] == null ? '' : list[i]['2b'],
+            list[i]['3a'] == null ? '' : list[i]['3a'],
+            list[i]['3b'] == null ? '' : list[i]['3b'],
+            list[i]['nama_lokal'] == null ? '' : list[i][kode]));
+      }
     }
+
     return komoditas;
   }
 
