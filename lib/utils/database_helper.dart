@@ -15,6 +15,7 @@ import 'package:flutter_exercise/models/satuanproduksi_model.dart';
 
 class DatabaseHelper {
   static Database? _db;
+  int dbVersion = 4;
 
   Future<Database?> get db async {
     if (_db != null) return _db;
@@ -34,7 +35,21 @@ class DatabaseHelper {
       await io.File(path).writeAsBytes(bytes, flush: true);
     }
 
-    var theDb = await openDatabase(path, version: 2);
+    var theDb = await openDatabase(path);
+    if (await theDb.getVersion() < dbVersion) {
+      theDb.close();
+      await deleteDatabase(path);
+
+      ByteData data = await rootBundle.load(join("assets", "komoditas.db"));
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+      await io.File(path).writeAsBytes(bytes, flush: true);
+
+      theDb = await openDatabase(path);
+
+      theDb.setVersion(dbVersion);
+    }
     return theDb;
   }
 
