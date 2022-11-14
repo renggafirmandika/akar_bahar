@@ -14,7 +14,7 @@ List<KomoditiModel> komoditi_list_filtered = [];
 List<WilayahProvModel> prov = [];
 WilayahProvModel selectedWilayah = WilayahProvModel("", "");
 String kode = "00";
-String nama = "-";
+String nama = "All";
 
 class Komoditi extends StatefulWidget {
   const Komoditi({super.key});
@@ -62,6 +62,7 @@ class _KomoditiState extends State<Komoditi> {
     //WilayahProvModel _selectedWilayah = _prov[0];
     setState(() {
       prov = _prov;
+      prov.insert(0, WilayahProvModel('00', 'All'));
       //selectedWilayah = _selectedWilayah;
     });
   }
@@ -97,7 +98,18 @@ class _KomoditiState extends State<Komoditi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Komoditas'),
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Daftar Komoditas'),
+            Visibility(
+                child: Text(
+              'Wilayah: ' + nama,
+              style: TextStyle(fontSize: 12.0),
+            ))
+          ],
+        ),
         actions: <Widget>[
           IconButton(
             onPressed: () => showMaterialRadioPicker<WilayahProvModel>(
