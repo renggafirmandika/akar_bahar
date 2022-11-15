@@ -6,8 +6,8 @@ import 'dart:core';
 
 List<WilayahModel> WilayahProv_list = [];
 List<WilayahModel> WilayahProv_list_filtered = [];
-List<WilayahModel> WilayahAll_list = [];
-List<WilayahModel> WilayahAll_list_filtered = [];
+//List<WilayahModel> WilayahAll_list = [];
+//List<WilayahModel> WilayahAll_list_filtered = [];
 TextEditingController teSearch = TextEditingController();
 
 class WilayahProv extends StatefulWidget {
@@ -40,12 +40,12 @@ class _WilayahProvState extends State<WilayahProv> {
   void getData() async {
     var dbHelper = DatabaseHelper();
     List<WilayahModel> _WilayahProv_list = await dbHelper.getProv();
-    List<WilayahModel> _WilayahAll_list = await dbHelper.getWilayah();
+    //List<WilayahModel> _WilayahAll_list = await dbHelper.getWilayah();
     setState(() {
       WilayahProv_list = _WilayahProv_list;
       WilayahProv_list_filtered = WilayahProv_list;
-      WilayahAll_list = _WilayahAll_list;
-      WilayahAll_list_filtered = _WilayahAll_list;
+      //WilayahAll_list = _WilayahAll_list;
+      //WilayahAll_list_filtered = _WilayahAll_list;
     });
   }
 
@@ -120,7 +120,7 @@ class _WilayahProvState extends State<WilayahProv> {
   }
 
   ListView getWilayahProvListView() {
-    TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
+    //TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
 
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 0.0),

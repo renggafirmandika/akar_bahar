@@ -9,8 +9,8 @@ List<WilayahModel> wilayah_list_filtered = [];
 TextEditingController teSearch = TextEditingController();
 
 class WilayahKabs extends StatefulWidget {
-  int id, klasifikasi;
-  String kdprov,
+  final int id, klasifikasi;
+  final String kdprov,
       prov,
       kdkab,
       kab,
@@ -147,7 +147,7 @@ class _WilayahState extends State<WilayahKabs> {
   }
 
   ListView getWilayahKabsListView() {
-    TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
+    //TextStyle? titleStyle = Theme.of(context).textTheme.subtitle1;
 
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 0.0),

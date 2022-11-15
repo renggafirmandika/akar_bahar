@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\Rengga\Kantor\Akar Bahar\App\akar_bahar"
+export "FLUTTER_ROOT=D:\Rengga\Master\Flutter\flutter"
+export "FLUTTER_APPLICATION_PATH=D:\Rengga\Akar Bahar\akar_bahar\akar_bahar"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"

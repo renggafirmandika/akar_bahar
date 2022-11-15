@@ -114,6 +114,7 @@ class DatabaseHelper {
     return wilayah;
   }
 
+  // untuk fitur pemilihan wilayah di menu Komoditas
   Future<List<WilayahProvModel>> getWilayahProv() async {
     var dbClient = await db;
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+//import 'package:carousel_slider/carousel_slider.dart';
 
 final List<String> imgList = [
   'assets/1102.jpg',
@@ -49,8 +49,8 @@ final List<Widget> imageSliders = imgList
     .toList();
 
 class WilayahDetail extends StatefulWidget {
-  int id, klasifikasi;
-  String kdprov,
+  final int id, klasifikasi;
+  final String kdprov,
       prov,
       kdkab,
       kab,
@@ -83,7 +83,7 @@ class WilayahDetail extends StatefulWidget {
 
 class _WilayahDetailState extends State<WilayahDetail> {
   //int _current = 0;
-  final CarouselController _controller = CarouselController();
+  //final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -188,15 +188,15 @@ class _WilayahDetailState extends State<WilayahDetail> {
       )),
     );
 
-    final bottomContentText1 = new ListTile(
-      title: Text("Nama Wilayah:"),
-      subtitle: Text(widget.nama_wilayah),
-    );
+    // final bottomContentText1 = new ListTile(
+    //   title: Text("Nama Wilayah:"),
+    //   subtitle: Text(widget.nama_wilayah),
+    // );
 
-    final bottomContentText2 = new ListTile(
-      title: Text("Jenis Wilayah:"),
-      subtitle: Text(widget.jenis_wilayah),
-    );
+    // final bottomContentText2 = new ListTile(
+    //   title: Text("Jenis Wilayah:"),
+    //   subtitle: Text(widget.jenis_wilayah),
+    // );
 
     final bottomContent = Expanded(
       child: SingleChildScrollView(

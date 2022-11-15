@@ -4,6 +4,7 @@ import 'package:flutter_exercise/tabs/download.dart';
 import 'package:flutter_exercise/tabs/beranda.dart';
 import 'package:flutter_exercise/tabs/glosarium.dart';
 import 'package:flutter_exercise/tabs/komoditi.dart';
+//import 'package:flutter_native_splash/flutter_native_splash.dart';
 //import 'package:flutter_exercise/tabs/wilayah.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -25,6 +26,11 @@ class _HomePageState extends State<HomePage> {
     //Wilayah(),
     Download(),
   ];
+
+  void initState() {
+    super.initState();
+    //FlutterNativeSplash.remove();
+  }
 
   @override
   Widget build(BuildContext context) {

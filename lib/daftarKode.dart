@@ -7,6 +7,7 @@ import 'package:flutter_exercise/tabs/wilayahprov.dart';
 import 'package:flutter_exercise/tabs/wpp.dart';
 //import 'package:flutter_exercise/tabs/wilayahprov.dart';
 
+// ignore: must_be_immutable
 class DaftarKode extends StatelessWidget {
   List<Mycard> mycard = [
     Mycard(Icons.location_on_outlined, 'Kode Wilayah', false, WilayahProv()),
@@ -62,10 +63,10 @@ class DaftarKode extends StatelessWidget {
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
+              child: Column(
+                //crossAxisCount: 1,
+                //crossAxisSpacing: 8,
+                //mainAxisSpacing: 8,
                 children: mycard
                     .map(
                       (e) => InkWell(
@@ -77,26 +78,48 @@ class DaftarKode extends StatelessWidget {
                         },
                         child: Card(
                           color: e.isActive ? Colors.green : null,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
+                          elevation: 5,
+                          margin: EdgeInsets.all(10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text(
+                                e.title,
+                                style: TextStyle(color: Colors.grey.shade600),
+                              ),
+                              leading: Icon(
                                 e.icon,
-                                size: 50,
+                                size: 40,
                                 color: e.isActive
                                     ? Colors.white
                                     : Colors.green[700],
                               ),
-                              SizedBox(height: 10),
-                              Text(
-                                e.title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: e.isActive
-                                        ? Colors.white
-                                        : Colors.grey),
+                              trailing: Icon(
+                                Icons.keyboard_arrow_right_rounded,
+                                color: Colors.green[700],
                               ),
-                            ],
+                              // mainAxisAlignment: MainAxisAlignment.center,
+                              // children: <Widget>[
+                              // Icon(
+                              //   e.icon,
+                              //   size: 50,
+                              //   color: e.isActive
+                              //       ? Colors.white
+                              //       : Colors.green[700],
+                              // ),
+                              // SizedBox(height: 10),
+                              // Text(
+                              //   e.title,
+                              //   textAlign: TextAlign.center,
+                              //   style: TextStyle(
+                              //       color: e.isActive
+                              //           ? Colors.white
+                              //           : Colors.grey),
+                              // ),
+                              //],
+                            ),
                           ),
                         ),
                       ),

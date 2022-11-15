@@ -50,7 +50,7 @@ dependencies:
   firebase_core: ^1.24.0
   archive: ^3.3.1
   path: ^1.8.2
-  flutter_native_splash: ^2.2.10+1
+  flutter_native_splash: ^2.2.14
   dio: ^4.0.6
   full_screen_image: ^1.0.2
   full_screen_image_null_safe: ^2.0.0
@@ -93,7 +93,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/1102.jpg
     - assets/komoditas.db
     - assets/placeholder.jpg
     - assets/logo_st2023.png

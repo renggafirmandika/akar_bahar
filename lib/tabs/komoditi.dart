@@ -63,7 +63,7 @@ class _KomoditiState extends State<Komoditi> {
     setState(() {
       prov = _prov;
       prov.insert(0, WilayahProvModel('00', 'All'));
-      //selectedWilayah = _selectedWilayah;
+      selectedWilayah = prov[0];
     });
   }
 
@@ -114,6 +114,7 @@ class _KomoditiState extends State<Komoditi> {
           IconButton(
             onPressed: () => showMaterialRadioPicker<WilayahProvModel>(
                 context: context,
+                headerColor: Colors.green.shade600,
                 title: 'Pilih Wilayah',
                 items: prov,
                 selectedItem: selectedWilayah,
