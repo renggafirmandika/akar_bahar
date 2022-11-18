@@ -15,7 +15,7 @@ import 'package:flutter_exercise/models/satuanproduksi_model.dart';
 
 class DatabaseHelper {
   static Database? _db;
-  int dbVersion = 4;
+  int dbVersion = 1;
 
   Future<Database?> get db async {
     if (_db != null) return _db;

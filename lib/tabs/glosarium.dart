@@ -14,6 +14,8 @@ class Glosarium extends StatefulWidget {
   State<Glosarium> createState() => _GlosariumState();
 }
 
+bool _isLoading = true;
+
 class _GlosariumState extends State<Glosarium> {
   int count = 10;
   final TextEditingController _controller = TextEditingController();
@@ -39,6 +41,7 @@ class _GlosariumState extends State<Glosarium> {
     setState(() {
       glosarium_list = _glosarium_list;
       glosarium_list_filtered = glosarium_list;
+      _isLoading = false;
     });
   }
 
@@ -84,29 +87,31 @@ class _GlosariumState extends State<Glosarium> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _controller,
-              //onChanged: (value) => _runFilter(value),
-              decoration: InputDecoration(
-                hintText: 'Cari Istilah',
-                suffixIcon: _controller.text.isNotEmpty
-                    ? IconButton(
-                        onPressed: _controller.clear,
-                        icon: Icon(Icons.clear),
-                        splashColor: Colors.transparent,
-                      )
-                    : null,
-                prefixIcon: Icon(Icons.search),
-              ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _controller,
+                    //onChanged: (value) => _runFilter(value),
+                    decoration: InputDecoration(
+                      hintText: 'Cari Istilah',
+                      suffixIcon: _controller.text.isNotEmpty
+                          ? IconButton(
+                              onPressed: _controller.clear,
+                              icon: Icon(Icons.clear),
+                              splashColor: Colors.transparent,
+                            )
+                          : null,
+                      prefixIcon: Icon(Icons.search),
+                    ),
+                  ),
+                ),
+                Flexible(child: getGlosariumListView()),
+              ],
             ),
-          ),
-          Flexible(child: getGlosariumListView()),
-        ],
-      ),
     );
   }
 

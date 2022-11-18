@@ -17,6 +17,8 @@ class WilayahProv extends StatefulWidget {
   State<WilayahProv> createState() => _WilayahProvState();
 }
 
+bool _isLoading = true;
+
 class _WilayahProvState extends State<WilayahProv> {
   int count = 10;
   final TextEditingController _controller = TextEditingController();
@@ -46,6 +48,7 @@ class _WilayahProvState extends State<WilayahProv> {
       WilayahProv_list_filtered = WilayahProv_list;
       //WilayahAll_list = _WilayahAll_list;
       //WilayahAll_list_filtered = _WilayahAll_list;
+      _isLoading = false;
     });
   }
 
@@ -92,30 +95,32 @@ class _WilayahProvState extends State<WilayahProv> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: TextField(
-              controller: _controller,
-              //onChanged: (value) => _runFilter(value),
-              decoration: InputDecoration(
-                hintText: 'Cari Nama atau Kode Provinsi',
-                suffixIcon: _controller.text.isNotEmpty
-                    ? IconButton(
-                        onPressed: _controller.clear,
-                        icon: Icon(Icons.clear),
-                        splashColor: Colors.transparent,
-                      )
-                    : null,
-                prefixIcon: Icon(Icons.search),
-              ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 0.0, horizontal: 15.0),
+                  child: TextField(
+                    controller: _controller,
+                    //onChanged: (value) => _runFilter(value),
+                    decoration: InputDecoration(
+                      hintText: 'Cari Nama atau Kode Provinsi',
+                      suffixIcon: _controller.text.isNotEmpty
+                          ? IconButton(
+                              onPressed: _controller.clear,
+                              icon: Icon(Icons.clear),
+                              splashColor: Colors.transparent,
+                            )
+                          : null,
+                      prefixIcon: Icon(Icons.search),
+                    ),
+                  ),
+                ),
+                Flexible(child: getWilayahProvListView()),
+              ],
             ),
-          ),
-          Flexible(child: getWilayahProvListView()),
-        ],
-      ),
     );
   }
 

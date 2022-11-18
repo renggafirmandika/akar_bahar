@@ -338,6 +338,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "package_info_plus",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus-3.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "package_info_plus_platform_interface",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus_platform_interface-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.2",
       "packageUri": "lib/",
@@ -494,6 +506,54 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "url_launcher",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_android",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.21",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_ios",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_ios-6.0.17",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_linux",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_macos",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_platform_interface-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_web",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_windows",
+      "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///D:/Rengga/Master/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2",
       "packageUri": "lib/",
@@ -530,7 +590,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-11-15T06:42:05.322451Z",
+  "generated": "2022-11-18T03:23:37.798582Z",
   "generator": "pub",
-  "generatorVersion": "2.18.1"
+  "generatorVersion": "2.18.4"
 }

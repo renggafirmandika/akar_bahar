@@ -15,6 +15,8 @@ class Wilayah extends StatefulWidget {
   State<Wilayah> createState() => _WilayahState();
 }
 
+bool _isLoading = true;
+
 class _WilayahState extends State<Wilayah> {
   int count = 10;
   final TextEditingController _controller = TextEditingController();
@@ -41,6 +43,7 @@ class _WilayahState extends State<Wilayah> {
     setState(() {
       wilayah_list = _wilayah_list;
       wilayah_list_filtered = wilayah_list;
+      _isLoading = false;
     });
   }
 
@@ -89,29 +92,31 @@ class _WilayahState extends State<Wilayah> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _controller,
-              //onChanged: (value) => _runFilter(value),
-              decoration: InputDecoration(
-                hintText: 'Cari Nama atau Kode Wilayah',
-                suffixIcon: _controller.text.isNotEmpty
-                    ? IconButton(
-                        onPressed: _controller.clear,
-                        icon: Icon(Icons.clear),
-                        splashColor: Colors.transparent,
-                      )
-                    : null,
-                prefixIcon: Icon(Icons.search),
-              ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _controller,
+                    //onChanged: (value) => _runFilter(value),
+                    decoration: InputDecoration(
+                      hintText: 'Cari Nama atau Kode Wilayah',
+                      suffixIcon: _controller.text.isNotEmpty
+                          ? IconButton(
+                              onPressed: _controller.clear,
+                              icon: Icon(Icons.clear),
+                              splashColor: Colors.transparent,
+                            )
+                          : null,
+                      prefixIcon: Icon(Icons.search),
+                    ),
+                  ),
+                ),
+                Flexible(child: getWilayahListView()),
+              ],
             ),
-          ),
-          Flexible(child: getWilayahListView()),
-        ],
-      ),
     );
   }
 

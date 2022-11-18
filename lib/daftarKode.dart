@@ -48,8 +48,7 @@ class DaftarKode extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
+            padding: const EdgeInsets.only(top: 20.0, bottom: 12.0),
             child: Text(
               'Pilih Daftar Kode',
               textAlign: TextAlign.left,
@@ -78,48 +77,62 @@ class DaftarKode extends StatelessWidget {
                         },
                         child: Card(
                           color: e.isActive ? Colors.green : null,
-                          elevation: 5,
+                          elevation: 2,
                           margin: EdgeInsets.all(10),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ListTile(
-                              title: Text(
-                                e.title,
-                                style: TextStyle(color: Colors.grey.shade600),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: -70,
+                                left: -90,
+                                child: Icon(
+                                  e.icon,
+                                  size: 150,
+                                  color: Colors.green.shade50,
+                                ),
                               ),
-                              leading: Icon(
-                                e.icon,
-                                size: 40,
-                                color: e.isActive
-                                    ? Colors.white
-                                    : Colors.green[700],
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ListTile(
+                                  title: Text(
+                                    e.title,
+                                    style:
+                                        TextStyle(color: Colors.grey.shade600),
+                                  ),
+                                  leading: Icon(
+                                    e.icon,
+                                    size: 40,
+                                    color: e.isActive
+                                        ? Colors.white
+                                        : Colors.green[700],
+                                  ),
+                                  trailing: Icon(
+                                    Icons.keyboard_arrow_right_rounded,
+                                    color: Colors.green[700],
+                                  ),
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  // children: <Widget>[
+                                  // Icon(
+                                  //   e.icon,
+                                  //   size: 50,
+                                  //   color: e.isActive
+                                  //       ? Colors.white
+                                  //       : Colors.green[700],
+                                  // ),
+                                  // SizedBox(height: 10),
+                                  // Text(
+                                  //   e.title,
+                                  //   textAlign: TextAlign.center,
+                                  //   style: TextStyle(
+                                  //       color: e.isActive
+                                  //           ? Colors.white
+                                  //           : Colors.grey),
+                                  // ),
+                                  //],
+                                ),
                               ),
-                              trailing: Icon(
-                                Icons.keyboard_arrow_right_rounded,
-                                color: Colors.green[700],
-                              ),
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              // children: <Widget>[
-                              // Icon(
-                              //   e.icon,
-                              //   size: 50,
-                              //   color: e.isActive
-                              //       ? Colors.white
-                              //       : Colors.green[700],
-                              // ),
-                              // SizedBox(height: 10),
-                              // Text(
-                              //   e.title,
-                              //   textAlign: TextAlign.center,
-                              //   style: TextStyle(
-                              //       color: e.isActive
-                              //           ? Colors.white
-                              //           : Colors.grey),
-                              // ),
-                              //],
-                            ),
+                            ],
                           ),
                         ),
                       ),
